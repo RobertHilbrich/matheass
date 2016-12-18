@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 import random
+import sys
 
 
 def calc_add():
@@ -50,8 +51,58 @@ def getTask():
 
 
 def main():
-    task = getTask()
-    print("%d %c %d = %d\n" % task)
+    print("Hallo Ritter Niklas!\n")
+    print("Du brauchst 100 Punkte, damit die Prinzessin gerettet wird!")
+    print("Deine Rüstung hält allerdings nur 5 Fehler aus ...\n")
+    print("Bestehst Du diese 10 Prüfungen, dann hast Du es geschafft.\n")
+
+    score = 0
+    fails = 0
+
+    for i in range(1, 11):
+        print("Prüfung Nummer %2d:" % i)
+        task = getTask()
+
+        while True:
+            print("%d %c %d = " % (task[0], task[1], task[2]), end="")
+            r = sys.stdin.readline()
+            try:
+                result = int(r)
+                break
+            except:
+                print("Oh - Deine Eingabe war wohl keine Zahl.")
+
+        if (result == task[3]):
+            score += 10
+            print("Wunderbar - genau richtig! ", end="")
+            print("Du bekommst 10 Punkte mehr. ", end="")
+            print("Du hast nun %d Punkte!\n" % score)
+        else:
+            fails += 1
+            print("Leider falsch - richtig wäre: %d" % task[3])
+            if fails == 5:
+                print("Damit hast Du nun 5 Fehler gemacht und der Drache")
+                print("knabbert schon an Deinen Haaren ...")
+                print("Versuche es doch noch einmal!")
+            else:
+                print("Du hast nun %d Fehler gemacht - ohje ohje!" % fails)
+                print("So langsam kommt der Drache immer näher ... \n")
+
+    print("")
+
+    if score == 100:
+        print("Jipiiiieeeehhh!")
+        print("Die Prinzessin ist gerettet und Du hast den Drachen erlegt!")
+        print("Eine tolle Jagd Herr Ritter Niklas!")
+        print("")
+        print("Bei so einem tollen Ergebnis freue ich mich schon ", end="")
+        print("auf die nächste Jagd mit Dir!")
+
+    else:
+        print("Gratulation - Du hast bis hierhin durchgehalten und der Drache")
+        print("hat Dich nicht gefressen. Deine >>%d Punkte<< reichen " % score)
+        print("aber nicht, um das Tür des Gefängnisses aufzusprengen.\n")
+        print("Versuche es doch noch einmal!")
 
 if __name__ == "__main__":
     main()
