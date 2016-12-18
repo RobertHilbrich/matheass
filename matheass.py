@@ -1,5 +1,16 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
+
+# This is a very basic math trainer for my son
+# It is supposed to present the user with 10
+# math tasks - suitable for elementary school
+# If there are no error, then a fictional princess
+# is saved from a dangerous dragon and an evil
+# dungeon.
+#
+# December 2016
+# Robert Hilbrich
+
 from __future__ import print_function
 import random
 import sys
@@ -33,6 +44,8 @@ def calc_div():
 
 
 def getTask():
+
+    # We need to make sure to have proper multiplication operator
     operators = ('+', '-', '\xc2\xb7'.decode('utf8'), ':')
 
     # Find out, which operation we are now using
