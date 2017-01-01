@@ -23,8 +23,8 @@ def calc_add():
 
 
 def calc_text_add():
-    s1 = random.randint(0, 100)
-    s2 = random.randint(0, 100)
+    s1 = random.randint(1, 100)
+    s2 = random.randint(1, 100)
     return(u"\
 Graf Drakula hat Geburtstag. Er hat %d Brüder und %d Schwestern. \
 Alle möchte er gerne zu seiner Geburtstagsfeier einladen. Wieviele Gäste \
@@ -40,7 +40,7 @@ def calc_sub():
 
 def calc_text_sub():
     m = random.randint(5, 100)
-    s = random.randint(0, m)
+    s = random.randint(1, m)
     return(u"\
 Für seine Geburtstagsfeier hat Graf Drakula %d EUR gespart, um \
 für seine Freunde eine große Party zu veranstalten. Für die Torte \
@@ -57,8 +57,8 @@ def calc_mul():
 
 
 def calc_text_mul():
-    f1 = random.randint(0, 10)
-    f2 = random.randint(0, 10)
+    f1 = random.randint(3, 10)
+    f2 = random.randint(1, 10)
     return(u"\
 Bei der Geburtstagsfeier von Graf Drakula kommen %d Gäste. Jeder Gast und \
 auch Drakula wollen das Geburtstagsmahl von %d Tellern essen. \
@@ -74,20 +74,34 @@ def calc_div():
 
 
 def calc_text_div():
-    f1 = random.randint(1, 10)
+    f1 = random.randint(2, 10)
     f2 = random.randint(0, 10)
     p = f1 * f2
     return(u"\
 Zur Geburtstagsfeier von Graf Drakula kommen %d Gäste. Die Geburtstagstorte \
-besteht aus %d Stücken. Wieviele Tortestücke kann jeder Partygast - und auch \
+besteht aus %d Stücken. Wieviele Tortenstücke kann jeder Partygast - und auch \
 Drakula - essen, so dass alle gleich viele Stücken Torte bekommen?\
 \n\n" % (f1 - 1, p), f2)
+
+
+def calc_text_complex_1():
+    z1 = random.randint(5, 10)
+    z2 = random.randint(1, 10)
+    z3 = random.randint(5, 25)
+    z4 = random.randint(3, 30)
+
+    return(u"\
+Die Zwerge wollen Graf Drakula auch ein Geschenk machen. Sie sammeln dafür \
+Geld und packen es gemeinsam in einen Beutel. %d Zwerge spenden jeweils \
+%d EUR, Zwerg Frederik spendet %d EUR und Zwerg Mika spendet %d EUR. \
+Wieviel Geld ist nun insgesamt im Beutel? \
+\n\n" % (z1, z2, z3, z4))
 
 
 def getTask():
 
     # Find out, which operation we are now using
-    op_id = random.randint(0, 7)
+    op_id = random.randint(0, 10)
 
     # Trigger the appropriate sub-function for each op
     ops = {0: calc_add,
@@ -97,13 +111,14 @@ def getTask():
            4: calc_text_add,
            5: calc_text_sub,
            6: calc_text_mul,
-           7: calc_text_div
+           7: calc_text_div,
+           8: calc_text_complex_1,
+           9: calc_text_complex_1,
+           10: calc_text_complex_1
            }
 
     # Get the task and its result
-    task = ops[op_id]()
-
-    return (task[0], task[1])
+    return ops[op_id]()
 
 
 def main():
