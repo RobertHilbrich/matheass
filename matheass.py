@@ -73,15 +73,26 @@ def calc_div():
     return("%d : %d = ?  " % (p, f1), f2)
 
 
-def calc_text_div():
-    f1 = random.randint(2, 10)
+def calc_text_div_1():
+    f1 = random.randint(3, 10)
     f2 = random.randint(0, 10)
     p = f1 * f2
     return(u"\
 Zur Geburtstagsfeier von Graf Drakula kommen %d Gäste. Die Geburtstagstorte \
 besteht aus %d Stücken. Wieviele Tortenstücke kann jeder Partygast - und auch \
-Drakula - essen, so dass alle gleich viele Stücken Torte bekommen?\
+Drakula - essen, so dass alle gleich viele Stücken Torte bekommen? \
 \n\n" % (f1 - 1, p), f2)
+
+
+def calc_text_div_2():
+    f2 = random.randint(1, 10)
+    p = 2 * f2
+    return(u"\
+Zur Geburtstagsfeier von Graf Drakula kommt 1 Gast. Die Geburtstagstorte \
+besteht aus %d Stücken. \
+Wieviele Tortenstücke kann jeder Partygast - und auch \
+Drakula - essen, so dass alle gleich viele Stücken Torte bekommen?\
+\n\n" % p, f2)
 
 
 def calc_text_complex_1():
@@ -95,13 +106,13 @@ Die Zwerge wollen Graf Drakula auch ein Geschenk machen. Sie sammeln dafür \
 Geld und packen es gemeinsam in einen Beutel. %d Zwerge spenden jeweils \
 %d EUR, Zwerg Frederik spendet %d EUR und Zwerg Mika spendet %d EUR. \
 Wieviel Geld ist nun insgesamt im Beutel? \
-\n\n" % (z1, z2, z3, z4))
+\n\n" % (z1, z2, z3, z4), z1 * z2 + z3 + z4)
 
 
 def getTask():
 
     # Find out, which operation we are now using
-    op_id = random.randint(0, 10)
+    op_id = random.randint(0, 11)
 
     # Trigger the appropriate sub-function for each op
     ops = {0: calc_add,
@@ -111,10 +122,11 @@ def getTask():
            4: calc_text_add,
            5: calc_text_sub,
            6: calc_text_mul,
-           7: calc_text_div,
-           8: calc_text_complex_1,
+           7: calc_text_div_1,
+           8: calc_text_div_2,
            9: calc_text_complex_1,
-           10: calc_text_complex_1
+           10: calc_text_complex_1,
+           11: calc_text_complex_1
            }
 
     # Get the task and its result
